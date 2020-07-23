@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Details Page</title>
+</head>
+    <body>
+	
+	<script>
+            
+		
+			var arr= new Array();
+	
+	function getData(){
+	var str = localStorage.getItem("localData");
+	if(str != null)
+	arr = JSON.parse(str);
+	}
+	
+	function deleteData(){
+	localStorage.clear()
+	}
+	
+	
+	function showData(){
+		
+		getData();
+		
+		
+		var tbl = document.getElementById("myTable");
+		
+		var x =tbl.rows.length;
+		while(--x){
+			tbl.deleteRow(x);
+		}
+		
+		
+		for(i=0;i<arr.length;i++){
+			var r = tbl.insertRow();
+			var cell1 = r.insertCell();
+			var cell2 = r.insertCell();
+			var cell3 = r.insertCell();
+			var cell4 = r.insertCell();
+			
+			cell1.innerHTML = arr[i].name;
+			cell2.innerHTML = arr[i].email;
+			cell3.innerHTML = arr[i].phone;
+			cell4.innerHTML = arr[i].message;
+		
+		}
+		
+		
+	}
+            
+        </script>
+	
+	
+				<form>
+						<h3> Details</h3>	
+						<table id="myTable" border=1>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone Number</th>
+							<th>Message</th>
+						</tr>
+						</table>
+				</form>
+						<script>
+						showData();
+						</script>
+						
+						
+ 
+		
+		
+        <form action="index.html">
+            <button >Go Back</button>
+			<input type="button" value="Delete localStorage" onclick="deleteData()"/>
+        </form>
+    </body>
+</html>						
